@@ -50,6 +50,9 @@ public:
     // Advance the game state according to the given action
     void Advance(const ACTION action);
 
+    // Evaluate the game state
+    Score Evaluate() const;
+
     // Get available actions for the current state
     std::vector<ACTION> Actions() const;
 

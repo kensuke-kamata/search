@@ -96,6 +96,13 @@ void Maze::Advance(const ACTION action)
     }
 }
 
+// Evaluate the game state
+Score Maze::Evaluate() const
+{
+    // Just return the score for now
+    return score_;
+}
+
 // Get available actions for the current state
 std::vector<ACTION> Maze::Actions() const
 {
