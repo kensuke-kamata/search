@@ -23,6 +23,8 @@ enum ACTION : int8_t
     MAX,
 };
 
+using Score = int64_t;
+
 // Changes in a coordinate by an ACTION
 constexpr const int DY[ACTION::MAX] = {0, 0, 1, -1}; // In Y-axis
 constexpr const int DX[ACTION::MAX] = {1, -1, 0, 0}; // In X-axis
