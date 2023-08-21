@@ -40,6 +40,29 @@ Maze::Maze(const int seed, const int height, const int width, const int endTurn,
     }
 }
 
+// Copy constructor
+Maze::Maze(const Maze &other)
+{
+    h_        = other.h_;
+    w_        = other.w_;
+    eng_      = other.eng_;
+    turn_     = other.turn_;
+    score_    = other.score_;
+    player_   = other.player_;
+    endTurn_  = other.endTurn_;
+    maxPoint_ = other.maxPoint_;
+
+    points_ = new int *[h_];
+    for (int i = 0; i < h_; i++)
+    {
+        points_[i] = new int[w_];
+        for (int j = 0; j < w_; j++)
+        {
+            points_[i][j] = other.points_[i][j];
+        }
+    }
+}
+
 // Destructor to free allocated memory
 Maze::~Maze()
 {

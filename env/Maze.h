@@ -38,6 +38,9 @@ public:
     // Constructor initializing a maze with given parameters
     Maze(const int seed, const int height, const int width, const int endTurn, const int maxPoint);
 
+    // Copy constructor
+    Maze(const Maze &other);
+
     // Deconstructor to free allocated memory
     ~Maze();
 
