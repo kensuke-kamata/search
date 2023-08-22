@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cassert>
 #include <iostream>
 #include <random>
 
@@ -38,7 +39,7 @@ double average(Search::IMaze &algo, int n, bool verbose = false)
     Score score = 0;
     for (int i = 0; i < n; i++)
     {
-        auto maze = Maze(eng());
+        auto maze = Maze(static_cast<int>(eng()));
         play(maze, algo, verbose);
         score += maze.Evaluate();
     }
