@@ -6,12 +6,6 @@
 
 #include "Maze.h"
 
-// Default constructor
-Maze::Maze()
-    : Maze(0, 4, 4, 4, 10)
-{
-}
-
 Maze::Maze(const int seed, const int height, const int width, const int endTurn, const int maxPoint)
     : h_(height), w_(width), endTurn_(endTurn), maxPoint_(maxPoint)
 {

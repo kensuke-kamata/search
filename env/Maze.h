@@ -32,11 +32,8 @@ constexpr const int DX[ACTION::MAX] = {1, -1, 0, 0}; // In X-axis
 class Maze
 {
 public:
-    // Default constructor
-    Maze();
-
     // Constructor initializing a maze with given parameters
-    Maze(const int seed, const int height, const int width, const int endTurn, const int maxPoint);
+    Maze(const int seed = 0, const int height = 4, const int width = 4, const int endTurn = 4, const int maxPoint = 10);
 
     // Copy constructor
     Maze(const Maze &other);
@@ -67,8 +64,8 @@ private:
 
     int **points_; // Point values for each cell
 
-    int turn_  = 0;
-    int score_ = 0;
+    int   turn_  = 0;
+    Score score_ = 0;
 
     int endTurn_  = 0;
     int maxPoint_ = 0;
