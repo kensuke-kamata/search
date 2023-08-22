@@ -9,7 +9,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(SRC
     main.cpp
     ${CMAKE_SOURCE_DIR}/../../env/Maze.cpp
-    ${CMAKE_SOURCE_DIR}/../../env/Game.cpp
 )
 
 include_directories(
