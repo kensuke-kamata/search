@@ -57,18 +57,17 @@ public:
     std::string ToString() const;
 
 private:
-    std::mt19937 eng_ = {}; // Random engine
-
     int h_ = 0; // Height of the maze
     int w_ = 0; // Width of the maze
-
-    int **points_; // Point values for each cell
-
-    int   turn_  = 0;
-    Score score_ = 0;
-
+    int turn_     = 0;
     int endTurn_  = 0;
     int maxPoint_ = 0;
 
+    Score score_ = 0;
+
     Coord player_ = Coord();
+
+    int **points_; // Point values for each cell
+
+    std::mt19937 eng_ = {}; // Random engine
 };
