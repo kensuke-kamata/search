@@ -41,6 +41,10 @@ public:
     // Deconstructor to free allocated memory
     ~Maze();
 
+    bool operator==(const Maze &other);
+    bool operator<(const Maze &other);
+    bool operator>(const Maze &other);
+
     // Check if the game is done
     bool IsDone() const;
 

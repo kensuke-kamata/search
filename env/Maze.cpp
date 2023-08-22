@@ -67,6 +67,21 @@ Maze::~Maze()
     delete[] points_;
 }
 
+bool Maze::operator==(const Maze &other)
+{
+    return score_ == other.Evaluate();
+}
+
+bool Maze::operator<(const Maze &other)
+{
+    return score_ < other.Evaluate();
+}
+
+bool Maze::operator>(const Maze &other)
+{
+    return score_ > other.Evaluate();
+}
+
 // Check if the game is done
 bool Maze::IsDone() const
 {
