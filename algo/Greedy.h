@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Search.h"
+#include <iostream>
 
 namespace Search
 {
@@ -15,24 +16,20 @@ public:
     virtual ACTION Search(const Maze &maze) override
     {
         auto actions = maze.Actions();
-        // auto size = actions.size();
-        // if (size <= 0)
-        // {
-        //     return ACTION::ILLEGAL;
-        // }
 
-        auto bestScore = -max_;
+        auto bestScore  = -max_;
         auto bestAction = ACTION::ILLEGAL;
         for (const auto action : actions)
         {
             auto now = maze;
-            // now.Adv
-            (void)now;
-            (void)action;
+            now.Advance(action);
+            auto score = now.Evaluate();
+            if (score > bestScore)
+            {
+                bestScore = score;
+                bestAction = action;
+            }
         }
-        (void)bestScore;
-
-        // return actions[eng_()n% size];
         return bestAction;
     }
 
