@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Search.h"
-#include <iostream>
 #include <queue>
 
 namespace Search
