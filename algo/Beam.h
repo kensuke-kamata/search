@@ -1,15 +1,16 @@
 #pragma once
 
 #include "Search.h"
+#include "Timer.h"
 #include <queue>
 
 namespace Search
 {
 class Beam : public IMaze {
 public:
-    Beam(const size_t beamDepth = 4, const size_t beamWidth = 2)
-        : beamDepth_(beamDepth),
-          beamWidth_(beamWidth)
+    Beam(const uint64_t beamWidth = 2, const int64_t threshold = 1)
+        : beamWidth_(beamWidth),
+          threshold_(threshold)
     {
     }
 
@@ -17,15 +18,21 @@ public:
 
     virtual ACTION Search(const Maze &maze) override
     {
-        std::priority_queue<Maze> beamNow;
         Maze mazeBest;
 
+        std::priority_queue<Maze> beamNow;
         beamNow.push(maze);
-        for (size_t i = 0; i < beamDepth_; i++)
+
+        auto timer = Timer(threshold_);
+        for (uint64_t i = 0;; i++)
         {
             std::priority_queue<Maze> beamNext;
-            for (size_t j = 0; j < beamWidth_; j++)
+            for (uint64_t j = 0; j < beamWidth_; j++)
             {
+                if (timer.IsOver())
+                {
+                    return mazeBest.GetAction();
+                }
                 if (beamNow.empty())
                 {
                     break;
@@ -56,7 +63,7 @@ public:
     }
 
 private:
-    size_t beamDepth_;
-    size_t beamWidth_;
+    uint64_t beamWidth_;
+    int64_t  threshold_;
 };
 } // namespace Search

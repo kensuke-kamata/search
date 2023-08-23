@@ -6,10 +6,10 @@ class Timer
 {
 public:
     // Constructor
-    Timer(const int64_t &thresold)
+    Timer(const int64_t &threshold)
+        : start_(std::chrono::high_resolution_clock::now()),
+          threshold_(threshold)
     {
-        start_ = std::chrono::high_resolution_clock::now();
-        threshold_ = thresold;
     }
 
    bool IsOver() const

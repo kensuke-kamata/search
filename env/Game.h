@@ -32,14 +32,20 @@ void play(Maze &maze, Search::IMaze &algo, bool verbose = false)
     }
 }
 
-double average(Search::IMaze &algo, int n, bool verbose = false)
+double average(
+    Search::IMaze &algo,
+    const int  n       = 100,
+    const int  height  = 4,
+    const int  width   = 4,
+    const int  endTurn = 4,
+    const bool verbose = false)
 {
     std::random_device gen;
     std::mt19937 eng(gen());
     Score score = 0;
     for (int i = 0; i < n; i++)
     {
-        auto maze = Maze(static_cast<int>(eng()));
+        auto maze = Maze(static_cast<int>(eng()), height, width, endTurn);
         play(maze, algo, verbose);
         score += maze.Evaluate();
     }
