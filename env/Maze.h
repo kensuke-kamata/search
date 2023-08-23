@@ -41,9 +41,10 @@ public:
     // Deconstructor to free allocated memory
     ~Maze();
 
-    bool operator==(const Maze &other);
-    bool operator<(const Maze &other);
-    bool operator>(const Maze &other);
+    Maze &operator=(const Maze &other);
+    bool operator==(const Maze &other) const;
+    bool operator<(const Maze &other) const;
+    bool operator>(const Maze &other) const;
 
     // Check if the game is done
     bool IsDone() const;
@@ -60,6 +61,9 @@ public:
     // Convert current game state to string for display
     std::string ToString() const;
 
+    void   SetAction(const ACTION action);
+    ACTION GetAction() const;
+
 private:
     int h_ = 0; // Height of the maze
     int w_ = 0; // Width of the maze
@@ -70,6 +74,7 @@ private:
     Score score_ = 0;
 
     Coord player_ = Coord();
+    ACTION action_ = ACTION::ILLEGAL;
 
     int **points_; // Point values for each cell
 

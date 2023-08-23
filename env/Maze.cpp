@@ -27,9 +27,12 @@ Maze::Maze(const int seed, const int height, const int width, const int endTurn,
         {
             if (i == player_.y_ && j == player_.x_)
             {
-                continue;
+                points_[i][j] = 0; // Set the player's location to 0
             }
-            points_[i][j] = eng_() % maxPoint_;
+            else
+            {
+                points_[i][j] = eng_() % maxPoint_;
+            }
         }
     }
 }
@@ -37,15 +40,18 @@ Maze::Maze(const int seed, const int height, const int width, const int endTurn,
 // Copy constructor
 Maze::Maze(const Maze &other)
 {
+    // Copy the simple members
     h_        = other.h_;
     w_        = other.w_;
     eng_      = other.eng_;
     turn_     = other.turn_;
     score_    = other.score_;
     player_   = other.player_;
+    action_   = other.action_;
     endTurn_  = other.endTurn_;
     maxPoint_ = other.maxPoint_;
 
+    // Allocate and copy the points
     points_ = new int *[h_];
     for (int i = 0; i < h_; i++)
     {
@@ -67,17 +73,55 @@ Maze::~Maze()
     delete[] points_;
 }
 
-bool Maze::operator==(const Maze &other)
+// Copy assignment operator
+Maze &Maze::operator=(const Maze &other)
+{
+    if (this == &other)
+        return *this; // handle self-assignment
+
+    // Free the existing resources
+    for (int i = 0; i < h_; i++)
+    {
+        delete[] points_[i];
+    }
+    delete[] points_;
+
+    // Copy the simple members
+    h_        = other.h_;
+    w_        = other.w_;
+    eng_      = other.eng_;
+    turn_     = other.turn_;
+    score_    = other.score_;
+    player_   = other.player_;
+    action_   = other.action_;
+    endTurn_  = other.endTurn_;
+    maxPoint_ = other.maxPoint_;
+
+    // Allocate and copy the points
+    points_ = new int *[h_];
+    for (int i = 0; i < h_; i++)
+    {
+        points_[i] = new int[w_];
+        for (int j = 0; j < w_; j++)
+        {
+            points_[i][j] = other.points_[i][j];
+        }
+    }
+
+    return *this;
+}
+
+bool Maze::operator==(const Maze &other) const
 {
     return score_ == other.Evaluate();
 }
 
-bool Maze::operator<(const Maze &other)
+bool Maze::operator<(const Maze &other) const
 {
     return score_ < other.Evaluate();
 }
 
-bool Maze::operator>(const Maze &other)
+bool Maze::operator>(const Maze &other) const
 {
     return score_ > other.Evaluate();
 }
@@ -155,4 +199,14 @@ std::string Maze::ToString() const
         ss << '\n';
     }
     return ss.str();
+}
+
+void Maze::SetAction(const ACTION action)
+{
+    action_ = action;
+}
+
+ACTION Maze::GetAction() const
+{
+    return action_;
 }
