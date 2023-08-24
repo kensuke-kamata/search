@@ -17,9 +17,9 @@
 int main(int, char**)
 {
     const int END_TURN = 100;
-    // // Width: 5, Threshold: 1 ms
+    // // Width: 5, Threshold: 10 ms
     auto algo1 = Search::Beam(5, 10);
-    // // Width: 1, Depth: 100Threshold: 1 ms
+    // // Width: 1, Depth: 100, Threshold: 10 ms
     auto algo2 = Search::Beams(1, END_TURN, 10);
 
     auto score1 = average(algo1, 100, 30, 30, 100, false);
